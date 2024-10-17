@@ -17,6 +17,15 @@ namespace Infraestructure.Repository
         {
            this._dbContext = _dbContext;
         }
+
+        public async Task<MarcaAuto> Create(MarcaAuto marcaAuto)
+        {
+            await _dbContext.marcaAutosDb.AddAsync(marcaAuto);
+            await _dbContext.SaveChangesAsync();
+
+            return marcaAuto;
+        }
+
         public async Task<IEnumerable<MarcaAuto>> GetAll()
         {
             return await _dbContext.marcaAutosDb.ToListAsync<MarcaAuto>();

@@ -10,6 +10,7 @@ namespace Domain.Interfaces
 {
     public interface IMarcaAutoRepository
     {
+        Task<MarcaAuto> Create(MarcaAuto marcaAuto);
         Task<IEnumerable<MarcaAuto>> GetAll();
     }
 }
