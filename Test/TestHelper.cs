@@ -27,6 +27,8 @@ namespace Test
             marcaAutoDbContext.Database.EnsureCreated();
         }
 
+        public MarcaAutoDbContext GetMarcaAutoDbContext() { return marcaAutoDbContext; }
+
         public IMarcaAutoRepository GetMarcaAutoRepository()
         {
             return new MarcaAutoRepository(marcaAutoDbContext);

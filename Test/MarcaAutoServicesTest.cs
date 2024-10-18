@@ -10,16 +10,23 @@ using System.Threading.Tasks;
 
 namespace Test
 {
-    public class MarcaAutoTest
+    public class MarcaAutoServicesTest
     {
         private TestHelper helper;
         private IMarcaAutoRepository repository;
         private IMarcaAutosService marcaAutosService;
-        public MarcaAutoTest() 
+        public MarcaAutoServicesTest() 
         {
+            //Arrange
             helper = new TestHelper();
             repository = helper.GetMarcaAutoRepository();
             marcaAutosService = new MarcaAutoService(repository);
+        }
+
+
+        [Fact]
+        public async Task GetAllAsync()
+        {        
 
             var marcaAutos = helper.GetMarcaAutosMock();
 
@@ -27,26 +34,12 @@ namespace Test
             {
                 repository.Create(marcaAuto).GetAwaiter();
             }
+
+            //ACt
+            var result = await marcaAutosService.GetAll();
+            //Assert
+            Assert.True(result.ToList().Count > 0);           
         }
-
-
-        [Fact]
-        public async Task RepositoryGetAllAsync()
-        {          
-
-            var result = repository.GetAll().GetAwaiter().GetResult();
-
-            Assert.True(result.ToList().Count > 0);
-        }
-
-        [Fact]
-        public async Task ServiceGetAllAsync()
-        {
-
-            var result =  marcaAutosService.GetAll().GetAwaiter().GetResult();
-
-            Assert.True(result.ToList().Count > 0);
-
-        }
+      
     }
 }

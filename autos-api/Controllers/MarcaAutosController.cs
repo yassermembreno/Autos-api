@@ -14,16 +14,16 @@ namespace autos_api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MarcaAutoesController : ControllerBase
+    public class MarcaAutosController : ControllerBase
     {
         private readonly IMarcaAutosService marcaAutoService;
 
-        public MarcaAutoesController(IMarcaAutosService marcaAutoService)
+        public MarcaAutosController(IMarcaAutosService marcaAutoService)
         {
             this.marcaAutoService = marcaAutoService;
         }
 
-        // GET: api/MarcaAutoes
+        // GET: api/MarcaAutos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MarcaAuto>>> GetmarcaAutosDb()
         {
