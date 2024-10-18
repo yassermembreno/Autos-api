@@ -9,17 +9,13 @@ using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 namespace Test
 {
-    public class ApplicationFactoryTest : WebApplicationFactory<Program>
+    public class ApplicationFactoryTest<Program> : WebApplicationFactory<Program> where Program : class
     {
-        private readonly ApplicationFixture _applicationFixture;
-
-        public ApplicationFactoryTest(ApplicationFixture applicationFixture)
-        {
-            _applicationFixture = applicationFixture;
-        }
-
+        private ApplicationFixture? _applicationFixture;
+       
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
+            _applicationFixture = new ApplicationFixture();
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build();

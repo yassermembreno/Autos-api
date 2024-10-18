@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
@@ -10,17 +11,18 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Test
 {
     public class MarcaAutoControllerTest
     {
        
-        [Fact]
+        [Fact]  
         public async Task GetAllMarcaAutoController()
         {
             //Arrange
             var applicationFixture = new ApplicationFixture();
-            await using var _factory = new ApplicationFactoryTest(applicationFixture);
+            await using var _factory = new ApplicationFactoryTest<Program>();
 
             using var client = _factory.CreateClient();
 
