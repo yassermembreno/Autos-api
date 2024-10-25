@@ -1,5 +1,6 @@
 using Application.Interfaces;
 using Application.Services;
+using autos_api.Extensions;
 using Domain.Interfaces;
 using Infraestructure.Data;
 using Infraestructure.Repository;
@@ -26,6 +27,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    
 }
 
 app.UseHttpsRedirection();
@@ -33,7 +35,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.ApplyMigrations();
 app.Run();
 
 public partial class Program { }
